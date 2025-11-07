@@ -10,6 +10,8 @@ import connectDB from './config/db.js';
 import { inngest, functions } from './inngest/index.js';
 
 const app = express();
+// Decide mode: cloud on Vercel, dev locally
+const INNGEST_MODE = process.env.VERCEL ? 'cloud' : 'dev';
 
 // DB first
 await connectDB();
@@ -21,7 +23,11 @@ await connectDB();
 app.use(
   '/api/inngest',
   express.raw({ type: '*/*' }),
-  serve({ client: inngest, functions })
+  serve({
+    client: inngest,
+    functions,
+    mode: INNGEST_MODE,         // ← force cloud on Vercel
+  })
 );
 
 // Now your usual middleware/routes
