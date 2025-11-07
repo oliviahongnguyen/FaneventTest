@@ -20,6 +20,13 @@ await connectDB();
  * Inngest FIRST, with RAW body.
  * Do NOT put express.json() or Clerk before this.
  */
+// Normalize the signing key just in case
+if (process.env.INNGEST_SIGNING_KEY) {
+  process.env.INNGEST_SIGNING_KEY = process.env.INNGEST_SIGNING_KEY.trim();
+  console.log('[INNGEST DEBUG] keyTail=', process.env.INNGEST_SIGNING_KEY.slice(-6));
+}
+
+
 app.use(
   '/api/inngest',
   express.raw({ type: '*/*' }),
