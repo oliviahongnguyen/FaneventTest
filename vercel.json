@@ -1,8 +1,7 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "version": 3,
-  "rewrites": [
-    { "source": "/api/inngest", "destination": "/api/index" },
-    { "source": "/(.*)", "destination": "/api/index" }
+  "version": 2,
+  "routes": [
+    { "src": "/api/inngest", "dest": "/api/index" },
+    { "src": "/(.*)", "dest": "/api/index" }
   ]
 }
