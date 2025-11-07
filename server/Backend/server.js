@@ -26,7 +26,7 @@ app.use(
   serve({
     client: inngest,
     functions,
-    mode: INNGEST_MODE,         // ← force cloud on Vercel
+    mode: 'cloud',           // ← hard force cloud (ignore env)
   })
 );
 
