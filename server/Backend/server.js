@@ -23,12 +23,23 @@ await connectDB();
 app.use(
   '/api/inngest',
   express.raw({ type: '*/*' }),
-  serve({
-    client: inngest,
-    functions,
-    mode: 'cloud',           // ← hard force cloud (ignore env)
-  })
+  (req, _res, next) => {
+    const sig = req.get('x-inngest-signature') || '';
+    const env = req.get('x-inngest-env') || '';
+    const keyTail = (process.env.INNGEST_SIGNING_KEY || '').slice(-6);
+    console.log(
+      '[INNGEST DEBUG]',
+      'buf=', Buffer.isBuffer(req.body),
+      'len=', req.body?.length,
+      'envHeader=', env,
+      'sigTail=', sig.slice(-6),
+      'keyTail=', keyTail
+    );
+    next();
+  },
+  serve({ client: inngest, functions, mode: 'cloud' })
 );
+
 
 // Now your usual middleware/routes
 app.use(cors());
@@ -42,6 +53,8 @@ app.use((req, res, next) => {
 
 // Health check
 app.get('/', (req, res) => res.send('Server is Live!'));
+
+
 
 // ✅ Export the app for Vercel
 export default app;
