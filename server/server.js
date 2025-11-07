@@ -2,10 +2,10 @@ import express from "express";
 import cors from 'cors';
 // import dotenv from "dotenv";
 import 'dotenv/config';
-import connectDB from "./config/db.js";
+import connectDB from "./Backend/config/db.js";
 import {clerkMiddleware} from'@clerk/express';
 import {serve} from "inngest/express";
-import {inngest, functions} from "./inngest/index.js";
+import {inngest, functions} from "./Backend/inngest/index.js";
 
 const app = express();
 const port = 3000;

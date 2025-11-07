@@ -1,34 +1,27 @@
 {
-  "name": "fanevent",
+  "name": "server",
   "version": "1.0.0",
-  "description": "Fanevent",
-  "main": "index.js",
-  "scripts": {
-    "dev": "node Backend/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/seatbuckle/Fanevent.git"
-  },
+  "description": "",
+  "main": "server.js",
   "type": "module",
+  "scripts": {
+    "server": "nodemon server.js",
+    "start": "node server.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/seatbuckle/Fanevent/issues"
-  },
-  "homepage": "https://github.com/seatbuckle/Fanevent#readme",
-  "devDependencies": {
-    "nodemon": "^3.1.10"
-  },
   "dependencies": {
     "@clerk/express": "^1.7.46",
-    "axios": "^1.13.2",
-    "cloudinary": "^2.8.0",
+    "axios": "^1.9.0",
+    "cloudinary": "^2.6.1",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
+    "dotenv": "^16.6.1",
     "express": "^5.1.0",
     "inngest": "^3.45.0",
-    "mongoose": "^8.19.3"
+    "mongoose": "^8.15.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
