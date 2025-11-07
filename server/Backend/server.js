@@ -13,8 +13,15 @@ const app = express();
 // Decide mode: cloud on Vercel, dev locally
 const INNGEST_MODE = process.env.VERCEL ? 'cloud' : 'dev';
 
+if (!process.env.VERCEL) {
+  const { config } = await import('dotenv');
+  config();
+}
+
 // DB first
 await connectDB();
+
+
 
 /**
  * Inngest FIRST, with RAW body.
